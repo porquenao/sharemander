@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.LabeledIntent;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Parcelable;
@@ -112,8 +113,7 @@ public class ActionSend {
                 continue;
             }
 
-            intent = new Intent();
-            intent.setPackage(activityInfo.packageName);
+            intent = new LabeledIntent(activityInfo.packageName, resolveInfo.loadLabel(mActivity.getPackageManager()), activityInfo.icon);
             intent.setComponent(new ComponentName(activityInfo.packageName, activityInfo.name));
             intent = buildIntent(intent);
 
@@ -125,7 +125,7 @@ public class ActionSend {
                 }
             }
 
-            intentMap.put(activityInfo.loadLabel(mActivity.getPackageManager()), intent);
+            intentMap.put(resolveInfo.loadLabel(mActivity.getPackageManager()), intent);
         }
 
         List<Intent> intents = new ArrayList<>();
