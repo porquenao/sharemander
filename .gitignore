@@ -1,13 +1,9 @@
 # Directories
 .gradle/
 .idea/
-.navigation/
 build/
-captures/
 
 # Files
-com_crashlytics_export_strings.xml
-crashlytics-build.properties
 local.properties
 
 # Extensions
