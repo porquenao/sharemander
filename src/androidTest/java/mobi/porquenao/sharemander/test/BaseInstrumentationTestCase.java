@@ -1,4 +1,4 @@
-package mobi.porquenao.andaction.test;
+package mobi.porquenao.sharemander.test;
 
 import android.content.Context;
 import android.content.Intent;
@@ -49,8 +49,8 @@ public class BaseInstrumentationTestCase extends InstrumentationTestCase {
         List<ResolveInfo> resolveInfos = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             ActivityInfo activityInfo = new ActivityInfo();
-            activityInfo.packageName = "mobi.porquenao.andaction" + i;
-            activityInfo.name = "AndAction-Normal-" + i;
+            activityInfo.packageName = "mobi.porquenao.sharemander" + i;
+            activityInfo.name = "Sharemander-Normal-" + i;
             activityInfo.nonLocalizedLabel = activityInfo.name;
 
             ResolveInfo resolveInfo = new ResolveInfo();

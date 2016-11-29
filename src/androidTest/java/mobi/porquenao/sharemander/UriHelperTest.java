@@ -1,4 +1,4 @@
-package mobi.porquenao.andaction;
+package mobi.porquenao.sharemander;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import mobi.porquenao.andaction.test.BaseInstrumentationTestCase;
+import mobi.porquenao.sharemander.test.BaseInstrumentationTestCase;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,8 +23,8 @@ public class UriHelperTest extends BaseInstrumentationTestCase {
 
     private static final String NAME = "NAME";
     private static final String CONTENT = "Content.\n";
-    private static final int DRAWABLE = mobi.porquenao.andaction.test.R.drawable.black;
-    private static final int RAW = mobi.porquenao.andaction.test.R.raw.content;
+    private static final int DRAWABLE = mobi.porquenao.sharemander.test.R.drawable.black;
+    private static final int RAW = mobi.porquenao.sharemander.test.R.raw.content;
 
     public void testFile() throws Exception {
         File file = createFile(mTargetContext);
@@ -35,7 +35,7 @@ public class UriHelperTest extends BaseInstrumentationTestCase {
 
     public void testUri() throws Exception {
         String packageName = mTargetContext.getPackageName();
-        Uri uri = Uri.parse("android.resource://" + packageName + "/" + mobi.porquenao.andaction.test.R.raw.content);
+        Uri uri = Uri.parse("android.resource://" + packageName + "/" + mobi.porquenao.sharemander.test.R.raw.content);
         String content = readUri(mContext, uri);
         assertThat(content).isEqualTo(CONTENT);
     }

@@ -1,6 +1,6 @@
-package mobi.porquenao.andaction;
+package mobi.porquenao.sharemander;
 
-import mobi.porquenao.andaction.test.BaseInstrumentationTestCase;
+import mobi.porquenao.sharemander.test.BaseInstrumentationTestCase;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

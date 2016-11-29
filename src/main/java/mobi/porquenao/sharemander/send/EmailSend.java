@@ -1,4 +1,4 @@
-package mobi.porquenao.andaction.send;
+package mobi.porquenao.sharemander.send;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import mobi.porquenao.andaction.CustomUriAction;
+import mobi.porquenao.sharemander.CustomUriAction;
 
 public class EmailSend extends CustomUriAction {
 

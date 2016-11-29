@@ -1,9 +1,9 @@
-package mobi.porquenao.andaction;
+package mobi.porquenao.sharemander;
 
 import java.io.File;
 import java.io.InputStream;
 
-import mobi.porquenao.andaction.test.BaseInstrumentationTestCase;
+import mobi.porquenao.sharemander.test.BaseInstrumentationTestCase;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,7 +29,7 @@ public class CacheManagerTest extends BaseInstrumentationTestCase {
     public void testCacheInputStream() throws Exception {
         final int filesCount = getFilesCount();
         assertThat(filesCount).isInstanceOf(Integer.class);
-        InputStream inputStream = mTargetContext.getResources().openRawResource(mobi.porquenao.andaction.test.R.raw.content);
+        InputStream inputStream = mTargetContext.getResources().openRawResource(mobi.porquenao.sharemander.test.R.raw.content);
         CacheManager.cacheInputStream(mTargetContext, inputStream, "name");
         File[] newFilesCount = mTargetContext.getCacheDir().listFiles();
         assertThat(newFilesCount.length).isGreaterThan(filesCount);

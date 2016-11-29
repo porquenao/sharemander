@@ -1,4 +1,4 @@
-package mobi.porquenao.andaction.type;
+package mobi.porquenao.sharemander.type;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import mobi.porquenao.andaction.ActionsDefaults;
-import mobi.porquenao.andaction.CustomPackageAction;
+import mobi.porquenao.sharemander.ActionsDefaults;
+import mobi.porquenao.sharemander.CustomPackageAction;
 
 public class ActionSend {
 

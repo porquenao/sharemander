@@ -1,4 +1,4 @@
-package mobi.porquenao.andaction;
+package mobi.porquenao.sharemander;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +9,7 @@ import org.mockito.Mock;
 
 import java.util.List;
 
-import mobi.porquenao.andaction.test.BaseInstrumentationTestCase;
+import mobi.porquenao.sharemander.test.BaseInstrumentationTestCase;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;

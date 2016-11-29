@@ -1,4 +1,4 @@
-package mobi.porquenao.andaction.type;
+package mobi.porquenao.sharemander.type;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,9 +12,9 @@ import org.mockito.Mock;
 import java.util.ArrayList;
 import java.util.List;
 
-import mobi.porquenao.andaction.ActionsDefaults;
-import mobi.porquenao.andaction.CustomPackageAction;
-import mobi.porquenao.andaction.test.BaseInstrumentationTestCase;
+import mobi.porquenao.sharemander.ActionsDefaults;
+import mobi.porquenao.sharemander.CustomPackageAction;
+import mobi.porquenao.sharemander.test.BaseInstrumentationTestCase;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
@@ -114,8 +114,8 @@ public class ActionSendTest extends BaseInstrumentationTestCase {
     }
 
     public void testGetFilteredIntents_Blacklist() {
-        ActionsDefaults.addBlacklist("mobi.porquenao.andaction0");
-        ActionsDefaults.addBlacklist("mobi.porquenao.andaction1");
+        ActionsDefaults.addBlacklist("mobi.porquenao.sharemander0");
+        ActionsDefaults.addBlacklist("mobi.porquenao.sharemander1");
         Intent intent = new Intent(Intent.ACTION_SEND);
         mockPackageManagerIntents(mPackageManager, 3);
         assertThat(mActionSend.getFilteredIntents(intent).size()).isEqualTo(1);
@@ -126,7 +126,7 @@ public class ActionSendTest extends BaseInstrumentationTestCase {
         mActionSend.customize(new CustomPackageAction() {
             @Override
             public List<String> getPackages(Context context) {
-                return new ArrayList<String>() {{ add("mobi.porquenao.andaction0"); }};
+                return new ArrayList<String>() {{ add("mobi.porquenao.sharemander0"); }};
             }
 
             @Override

@@ -1,10 +1,10 @@
-package mobi.porquenao.andaction;
+package mobi.porquenao.sharemander;
 
 import java.util.ArrayList;
 
 public class ActionsDefaults {
 
-    private static String sFileNamePrefix = "andaction-";
+    private static String sFileNamePrefix = "sharemander-";
     private static String sSendDialogTitle;
     private static ArrayList<String> sBlacklist = new ArrayList<>();
 

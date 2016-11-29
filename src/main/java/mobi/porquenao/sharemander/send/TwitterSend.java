@@ -1,9 +1,9 @@
-package mobi.porquenao.andaction.send;
+package mobi.porquenao.sharemander.send;
 
 import android.content.Intent;
 import android.net.Uri;
 
-import mobi.porquenao.andaction.CustomUriAction;
+import mobi.porquenao.sharemander.CustomUriAction;
 
 public class TwitterSend extends CustomUriAction {
 

@@ -1,8 +1,8 @@
-package mobi.porquenao.andaction;
+package mobi.porquenao.sharemander;
 
 import android.app.Activity;
 
-import mobi.porquenao.andaction.type.ActionSend;
+import mobi.porquenao.sharemander.type.ActionSend;
 
 public abstract class Actions {
 

@@ -1,9 +1,9 @@
-package mobi.porquenao.andaction;
+package mobi.porquenao.sharemander;
 
 import android.app.Activity;
 
-import mobi.porquenao.andaction.test.BaseInstrumentationTestCase;
-import mobi.porquenao.andaction.type.ActionSend;
+import mobi.porquenao.sharemander.test.BaseInstrumentationTestCase;
+import mobi.porquenao.sharemander.type.ActionSend;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
