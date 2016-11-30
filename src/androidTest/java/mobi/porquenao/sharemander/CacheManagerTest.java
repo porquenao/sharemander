@@ -18,43 +18,33 @@ public class CacheManagerTest extends BaseInstrumentationTestCase {
     }
 
     public void testCacheFile() throws Exception {
-        File file = File.createTempFile(ActionsDefaults.getFileNamePrefix(), "name", mTargetContext.getCacheDir());
-        final int filesCount = getFilesCount();
-        assertThat(filesCount).isInstanceOf(Integer.class);
+        File file = createTempFile();
+        int filesCount = getFilesCount();
         CacheManager.cacheFile(mTargetContext, file, "name");
-        File[] newFilesCount = mTargetContext.getCacheDir().listFiles();
-        assertThat(newFilesCount.length).isGreaterThan(filesCount);
+        assertThat(getFilesCount()).isGreaterThan(filesCount);
     }
 
     public void testCacheInputStream() throws Exception {
-        final int filesCount = getFilesCount();
-        assertThat(filesCount).isInstanceOf(Integer.class);
+        int filesCount = getFilesCount();
         InputStream inputStream = mTargetContext.getResources().openRawResource(mobi.porquenao.sharemander.test.R.raw.content);
         CacheManager.cacheInputStream(mTargetContext, inputStream, "name");
-        File[] newFilesCount = mTargetContext.getCacheDir().listFiles();
-        assertThat(newFilesCount.length).isGreaterThan(filesCount);
+        assertThat(getFilesCount()).isGreaterThan(filesCount);
     }
 
     public void testClean() throws Exception {
-        //noinspection ResultOfMethodCallIgnored
-        File.createTempFile(ActionsDefaults.getFileNamePrefix(), "name", mTargetContext.getCacheDir());
-        final int filesCount = getFilesCount();
-        assertThat(filesCount).isInstanceOf(Integer.class);
+        createTempFile();
+        int filesCount = getFilesCount();
         CacheManager.clean(mTargetContext);
-        File[] newCacheFiles = mTargetContext.getCacheDir().listFiles();
-        assertThat(newCacheFiles.length).isLessThan(filesCount);
+        assertThat(getFilesCount()).isLessThan(filesCount);
     }
 
     public void testCleanAsync() throws Exception {
-        //noinspection ResultOfMethodCallIgnored
-        File.createTempFile(ActionsDefaults.getFileNamePrefix(), "name", mTargetContext.getCacheDir());
+        createTempFile();
         final int filesCount = getFilesCount();
-        assertThat(filesCount).isInstanceOf(Integer.class);
         CacheManager.cleanAsync(mTargetContext, new Runnable() {
             @Override
             public void run() {
-                File[] newCacheFiles = mTargetContext.getCacheDir().listFiles();
-                assertThat(newCacheFiles.length).isLessThan(filesCount);
+                assertThat(getFilesCount()).isLessThan(filesCount);
                 mCalled = true;
                 wake();
             }
@@ -64,8 +54,15 @@ public class CacheManagerTest extends BaseInstrumentationTestCase {
         assertThat(mCalled).isTrue();
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    private File createTempFile() throws Exception {
+        File cacheDir = new File(mTargetContext.getCacheDir(), "sharemander");
+        cacheDir.mkdirs();
+        return File.createTempFile(ActionsDefaults.getFileNamePrefix(), "name", cacheDir);
+    }
+
     private int getFilesCount() {
-        return mTargetContext.getCacheDir().listFiles().length;
+        return new File(mTargetContext.getCacheDir(), "sharemander").listFiles().length;
     }
 
 }

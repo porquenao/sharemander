@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.RawRes;
+import android.support.v4.content.FileProvider;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -16,7 +17,8 @@ import java.io.InputStream;
 public class UriHelper {
 
     public static Uri file(@NonNull Context context, @NonNull String name, @NonNull File file) throws Exception {
-        return Uri.fromFile(CacheManager.cacheFile(context, file, name));
+        File cacheFile = CacheManager.cacheFile(context, file, name);
+        return FileProvider.getUriForFile(context, context.getPackageName() + ".sharemander", cacheFile);
     }
 
     public static Uri uri(@NonNull Context context, @NonNull String name, @NonNull Uri uri) throws Exception {
@@ -24,7 +26,8 @@ public class UriHelper {
     }
 
     public static Uri stream(@NonNull Context context, @NonNull String name, @NonNull InputStream inputStream) throws Exception {
-        return Uri.fromFile(CacheManager.cacheInputStream(context, inputStream, name));
+        File cacheFile = CacheManager.cacheInputStream(context, inputStream, name);
+        return FileProvider.getUriForFile(context, context.getPackageName() + ".sharemander", cacheFile);
     }
 
     public static Uri asset(@NonNull Context context, @NonNull String name, @NonNull String asset) throws Exception {
@@ -39,15 +42,15 @@ public class UriHelper {
         return stream(context, name, new ByteArrayInputStream(bytes));
     }
 
-    public static Uri bitmap(@NonNull Context context, @NonNull String name, @DrawableRes Bitmap bitmap) throws Exception {
+    public static Uri bitmap(@NonNull Context context, @NonNull String name, Bitmap bitmap) throws Exception {
         return bitmap(context, name, Bitmap.CompressFormat.PNG, 100, bitmap);
     }
 
-    public static Uri bitmap(@NonNull Context context, @NonNull String name, int quality, @DrawableRes Bitmap bitmap) throws Exception {
+    public static Uri bitmap(@NonNull Context context, @NonNull String name, int quality, Bitmap bitmap) throws Exception {
         return bitmap(context, name, Bitmap.CompressFormat.JPEG, quality, bitmap);
     }
 
-    public static Uri bitmap(@NonNull Context context, @NonNull String name, @NonNull Bitmap.CompressFormat compressFormat, int quality, @DrawableRes Bitmap bitmap) throws Exception {
+    public static Uri bitmap(@NonNull Context context, @NonNull String name, @NonNull Bitmap.CompressFormat compressFormat, int quality, Bitmap bitmap) throws Exception {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(compressFormat, quality, byteArrayOutputStream);
         return bytes(context, name, byteArrayOutputStream.toByteArray());

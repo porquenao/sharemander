@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class CacheManager {
 
     public static File cacheFile(Context context, File input, String name) throws IOException {
@@ -20,28 +21,27 @@ public class CacheManager {
         if (name != null) {
             name = "-" + name;
         }
-        File output = File.createTempFile(ActionsDefaults.getFileNamePrefix(), name, context.getCacheDir());
-        if (output.setReadable(true, false)) {
-            FileOutputStream outputStream = new FileOutputStream(output);
-            byte[] buf = new byte[2048];
-            int len;
-            while ((len = inputStream.read(buf)) > 0) {
-                outputStream.write(buf, 0, len);
-            }
-            inputStream.close();
-            outputStream.close();
-        } else {
-            throw new IOException("Could not set cache file to be world readable");
+
+        File cacheDir = new File(context.getCacheDir(), "sharemander");
+        cacheDir.mkdirs();
+
+        File output = File.createTempFile(ActionsDefaults.getFileNamePrefix(), name, cacheDir);
+        FileOutputStream outputStream = new FileOutputStream(output);
+        byte[] buf = new byte[2048];
+        int len;
+        while ((len = inputStream.read(buf)) > 0) {
+            outputStream.write(buf, 0, len);
         }
+        inputStream.close();
+        outputStream.close();
         return output;
     }
 
     public static void clean(@NonNull Context context) {
-        File[] files = context.getCacheDir().listFiles();
+        File[] files = new File(context.getCacheDir(), "sharemander").listFiles();
         if (files != null) {
             for (File file : files) {
                 if (file.getName().contains(ActionsDefaults.getFileNamePrefix())) {
-                    //noinspection ResultOfMethodCallIgnored
                     file.delete();
                 }
             }
